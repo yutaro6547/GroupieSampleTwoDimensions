@@ -3,9 +3,10 @@ package www.rozkey59.tokyo.groupiesampletwodimensions.main
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
-import timber.log.Timber
+import android.support.v7.widget.GridLayoutManager
+import com.xwray.groupie.Group
+import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.ViewHolder
 import www.rozkey59.tokyo.groupiesampletwodimensions.MainApp
 import www.rozkey59.tokyo.groupiesampletwodimensions.R
 import www.rozkey59.tokyo.groupiesampletwodimensions.databinding.ActivityMainBinding
@@ -17,21 +18,33 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var viewModel: MainStore
     lateinit var binding: ActivityMainBinding
+    private val adapter = GroupAdapter<ViewHolder>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         (application as MainApp).appComponent.plus(MainModule(this)).inject(this)
         binding.vm = viewModel
-        binding.fab.setOnClickListener {
-            viewModel.getIchibaItems("appId", "メンズ")
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-//                    Glide.with(this).load(it.Items[0].mediumImageUrls[0]).into(binding.image)
-                }, {
-                    Timber.e(it, it.message)
-                })
+        setUpView()
+        updateItems()
+    }
+
+    private fun setUpView() {
+        with(binding) {
+            recyclerView.layoutManager = GridLayoutManager(this@MainActivity, 2)
+            recyclerView.adapter = adapter
+            fab.setOnClickListener {
+                updateItems()
+            }
         }
+    }
+
+    private fun updateItems() {
+        // TODO: responseを受け取って渡す
+        adapter.update(
+            mutableListOf<Group>().apply {
+
+            }
+        )
     }
 }
