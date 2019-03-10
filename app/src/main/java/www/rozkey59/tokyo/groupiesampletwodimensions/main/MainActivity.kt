@@ -11,6 +11,7 @@ import www.rozkey59.tokyo.groupiesampletwodimensions.MainApp
 import www.rozkey59.tokyo.groupiesampletwodimensions.R
 import www.rozkey59.tokyo.groupiesampletwodimensions.databinding.ActivityMainBinding
 import www.rozkey59.tokyo.groupiesampletwodimensions.di.module.MainModule
+import www.rozkey59.tokyo.groupiesampletwodimensions.main.item.CaroucelItem
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
