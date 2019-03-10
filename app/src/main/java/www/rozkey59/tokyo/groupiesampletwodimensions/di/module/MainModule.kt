@@ -6,6 +6,7 @@ import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
 import www.rozkey59.tokyo.groupiesampletwodimensions.infra.api.RakutenClient
+import www.rozkey59.tokyo.groupiesampletwodimensions.main.MainDispatcher
 import www.rozkey59.tokyo.groupiesampletwodimensions.main.MainStore
 import www.rozkey59.tokyo.groupiesampletwodimensions.main.MainViewModelFactory
 
@@ -19,6 +20,11 @@ class MainModule(
         retrofit: Retrofit
     ): RakutenClient.RakutenService {
         return retrofit.create(RakutenClient.RakutenService::class.java)
+    }
+
+    @Provides
+    fun provideMainDispatcher(): MainDispatcher {
+        return MainDispatcher()
     }
 
     @Provides
