@@ -1,0 +1,37 @@
+package www.rozkey59.tokyo.groupiesampletwodimensions.infra.data
+
+
+data class IchibaResponse(
+    val itemName: String,
+    val catchCopy: String,
+    val itemCode: String,
+    val itemPrice: Int,
+    val itemCaption: String,
+    val itemUrl: String,
+    val shopUrl: String,
+    val smallImageUrls: List<String>,
+    val mediumImageUrls: List<String>,
+    val imageFlag: Int,
+    val availability: Int,
+    val taxFlag: Int,
+    val postageFlag: Int,
+    val creditCardFlag: Int,
+    val shopOfTheYearFlag: Int,
+    val shipOverseasFlag: Int,
+    val shipOverseasArea: String,
+    val asurakuFlag: Int,
+    val asurakuClosingTime: String,
+    val asurakuArea: String,
+    val affiliateRate: Float,
+    val startTime: String,
+    val endTime: String,
+    val reviewCount: Int,
+    val reviewAverage: Float,
+    val pointRate: Int,
+    val pointRateStartTime: String,
+    val pointRateEndTime: String,
+    val giftFlag: Int,
+    val shopName: String,
+    val shopCode: String,
+    val shopAffiliateUrl: String
+)
