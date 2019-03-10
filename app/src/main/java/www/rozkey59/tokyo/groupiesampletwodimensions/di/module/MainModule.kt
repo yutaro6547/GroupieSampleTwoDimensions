@@ -6,7 +6,7 @@ import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
 import www.rozkey59.tokyo.groupiesampletwodimensions.infra.api.RakutenClient
-import www.rozkey59.tokyo.groupiesampletwodimensions.main.MainViewModel
+import www.rozkey59.tokyo.groupiesampletwodimensions.main.MainStore
 import www.rozkey59.tokyo.groupiesampletwodimensions.main.MainViewModelFactory
 
 @Module
@@ -22,7 +22,7 @@ class MainModule(
     }
 
     @Provides
-    fun provideMainViewModel(factory: MainViewModelFactory): MainViewModel {
-        return ViewModelProviders.of(activity, factory).get(MainViewModel::class.java)
+    fun provideMainViewModel(factory: MainViewModelFactory): MainStore {
+        return ViewModelProviders.of(activity, factory).get(MainStore::class.java)
     }
 }

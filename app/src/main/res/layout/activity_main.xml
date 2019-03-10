@@ -4,7 +4,7 @@
     <data>
         <variable
                 name="vm"
-                type="www.rozkey59.tokyo.groupiesampletwodimensions.main.MainViewModel"/>
+                type="www.rozkey59.tokyo.groupiesampletwodimensions.main.MainStore"/>
     </data>
 
     <android.support.design.widget.CoordinatorLayout
