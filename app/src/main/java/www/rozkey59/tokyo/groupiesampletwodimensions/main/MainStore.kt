@@ -2,19 +2,26 @@ package www.rozkey59.tokyo.groupiesampletwodimensions.main
 
 import android.app.Application
 import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
 import www.rozkey59.tokyo.groupiesampletwodimensions.flux.store.Store
 import www.rozkey59.tokyo.groupiesampletwodimensions.infra.data.IchibaListResponse
-import www.rozkey59.tokyo.groupiesampletwodimensions.infra.repository.IchibaRepository
 import javax.inject.Inject
 
 
 class MainStore @Inject constructor(
     application: Application,
-    private val dispatcher: MainDispatcher,
-    private val repository: IchibaRepository
+    private val dispatcher: MainDispatcher
 ): Store(application) {
 
-    fun getIchibaItems(applicationId: String, keyword: String): Observable<IchibaListResponse> {
-        return repository.getRakutenIchibaItemsByKeyword(applicationId, keyword)
+    fun observe(): Observable<IchibaListResponse> {
+        return dispatcher.refresh
+            .map {
+                if (it is MainAction.Refresh) {
+                    it.data
+                } else {
+                    IchibaListResponse(Items = mutableListOf())
+                }
+            }
+            .observeOn(AndroidSchedulers.mainThread())
     }
 }
